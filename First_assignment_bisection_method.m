@@ -1,3 +1,6 @@
+clear
+clc
+
 l = 0.01:0.01:0.03;
 functionCallsVaryingL = zeros(3,length(l));
 
