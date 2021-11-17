@@ -11,7 +11,7 @@ for i=1:1:3
         a = -4;
         b = 4;
         n = 0;
-        while 0.5^n > (l(3) / (b - a))
+        while 0.5^n > (l(j) / (b - a))
             n = n + 1;
         end
 
