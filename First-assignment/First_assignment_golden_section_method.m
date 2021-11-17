@@ -2,7 +2,7 @@ clear
 clc
 
 
-l = 0.01:0.01:0.03;
+l = 0.01:0.01:0.09;
 gamma = 0.618;
 functionCallsVaryingL = zeros(3,length(l));
 
@@ -16,6 +16,7 @@ for i=1:1:3
         x2 = a + gamma * (b - a);
         fx1 = funcChoose(x1,i);
         fx2 = funcChoose(x2,i);
+        functionCallsVaryingL(i,j) = functionCallsVaryingL(i,j) + 2;
         while (b - a) >= l(j)
            if fx1 > fx2
                a = x1;
@@ -30,7 +31,7 @@ for i=1:1:3
                fx2 = fx1;
                fx1 = funcChoose(x1,i);
            end
-           functionCallsVaryingL(i,j) = k + 1;
+           functionCallsVaryingL(i,j) = functionCallsVaryingL(i,j) + 1;
            ak(i,k,j) = a;
            bk(i,k,j) = b;
            ks(i,k,j) = k;
