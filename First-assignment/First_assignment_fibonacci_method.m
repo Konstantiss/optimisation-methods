@@ -1,7 +1,7 @@
 clear
 clc
 
-l = 0.01:0.01:0.05;
+l = 0.01:0.01:0.03;
 e = 0.001;
 functionCallsVaryingL = zeros(3,length(l));
 
@@ -16,33 +16,38 @@ for i=1:1:3
         end
         x1 = a + (fibonacci(n - 2) / fibonacci(n)) * (b - a);
         x2 = a + (fibonacci(n - 1) / fibonacci(n)) * (b - a);
-        for k = 1:(n - 2)
-           fx1 = funcChoose(x1,i);
-           fx2 = funcChoose(x2,i);
+        fx1 = funcChoose(x1,i);
+        fx2 = funcChoose(x2,i);
+        functionCallsVaryingL(i,j) = functionCallsVaryingL(i,j) + 2;
+        for k = 2:(n - 2)
            if fx1 > fx2
                a = x1;
                x1 = x2;
                x2 = a + (fibonacci(n - k - 1) / fibonacci(n - k)) * (b - a);
+               fx1 = fx2;
+               fx2 = funcChoose(x2,i);
            elseif fx1 < fx2
                b = x2;
                x2 = x1;
                x1 = a + (fibonacci(n - k - 2) / fibonacci(n - k)) * (b - a);
+               fx2 = fx1;
+               fx1 = funcChoose(x1,i);
            end
-           if k == n - 2
-                  x2 = x1 + e;
-                  fx1 = funcChoose(x1,i);
-                  fx2 = funcChoose(x2,i);
-                  if fx1 > fx2
-                    a = x1;
-                  else
-                    b = x1;
-                  end
-           end
-           functionCallsVaryingL(i,j) = 2*k;
+           functionCallsVaryingL(i,j) = functionCallsVaryingL(i,j) + 1;
            ak(i,k,j) = a;
            bk(i,k,j) = b;
            ks(i,k,j) = k;
         end
+        x2 = x1 + e;
+        fx2 = funcChoose(x2,i);
+        functionCallsVaryingL(i,j) = functionCallsVaryingL(i,j) + 1;
+        if fx1 > fx2
+            a = x1;
+        else
+            b = x1;
+        end
+        ak(i,k,j) = a;
+        bk(i,k,j) = b;
     end
 end
 functionCallsVaryingL
