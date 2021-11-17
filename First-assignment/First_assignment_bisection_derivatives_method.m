@@ -2,7 +2,7 @@ clear
 clc
 
 
-l = 0.01:0.01:0.09;
+l = 0.001:0.01:0.05;
 functionCallsVaryingL = zeros(3,length(l));
 
 
@@ -17,11 +17,12 @@ for i=1:1:3
 
         for k = 1:n
            x = (a + b) / 2;
-           if funcDerivative(x,i) > 0
+           fx = funcDerivative(x,i);
+           if fx > 0
                b = x;
-           elseif funcDerivative(x,i) < 0
+           elseif fx < 0
                a = x;
-           elseif funcDerivative(x,i) == 0
+           elseif fx == 0
                k = n;
            end
            functionCallsVaryingL(i,j) = k;
@@ -50,7 +51,7 @@ plot(ks(1,:,1), ak(1,:,1),'o', ks(1,:,1), bk(1,:,1),'x')
 hold on
 plot(ks(1,:,2), ak(1,:,2),'*', ks(1,:,2), bk(1,:,2),'>')
 plot(ks(1,:,3), ak(1,:,3),'d', ks(1,:,3), bk(1,:,3),'<')
-title('Function 1')
+title('Function 1 boundaries')
 hold off
 
 figure(5)
@@ -58,7 +59,7 @@ plot(ks(2,:,1), ak(2,:,1),'o', ks(2,:,1), bk(2,:,1),'x')
 hold on
 plot(ks(2,:,2), ak(2,:,2),'*', ks(2,:,2), bk(2,:,2),'>')
 plot(ks(2,:,3), ak(2,:,3),'d', ks(2,:,3), bk(2,:,3),'<')
-title('Function 2')
+title('Function 2 boundaries')
 hold off
 
 figure(6)
@@ -66,5 +67,5 @@ plot(ks(3,:,1), ak(3,:,1),'o', ks(3,:,1), bk(3,:,1),'x')
 hold on
 plot(ks(3,:,2), ak(3,:,2),'*', ks(3,:,2), bk(3,:,2),'>')
 plot(ks(3,:,3), ak(3,:,3),'d', ks(3,:,3), bk(3,:,3),'<')
-title('Function 3')
+title('Function 3 boundaries')
 hold off
