@@ -2,7 +2,7 @@ clear
 clc
 
 
-l = 0.001:0.01:0.05;
+l = 0.001:0.01:0.03;
 functionCallsVaryingL = zeros(3,length(l));
 
 
@@ -23,7 +23,7 @@ for i=1:1:3
            elseif fx < 0
                a = x;
            elseif fx == 0
-               k = n;
+               break;
            end
            functionCallsVaryingL(i,j) = k;
            ak(i,k,j) = a;
