@@ -11,26 +11,30 @@ for i=1:1:3
     for j=1:length(l)
         a = -4;
         b = 4;
-        k = 0;
+        k = 1;
+        x1 = a + (1 - gamma) * (b - a);
+        x2 = a + gamma * (b - a);
+        fx1 = funcChoose(x1,i);
+        fx2 = funcChoose(x2,i);
         while (b - a) >= l(j)
-           x1 = a + (1 - gamma) * (b - a);
-           x2 = a + gamma * (b - a);
-           fx1 = funcChoose(x1,i);
-           fx2 = funcChoose(x2,i);
            if fx1 > fx2
                a = x1;
                x2 = a + gamma * (b - a);
                x1 = x2;
+               fx1 = fx2;
+               fx2 = funcChoose(x2,i);
            elseif fx1 < fx2
                b = x2;
                x2 = x1;
                x1 = a + (1 - gamma) * (b - a);
+               fx2 = fx1;
+               fx1 = funcChoose(x1,i);
            end
-           k = k + 1;
-           functionCallsVaryingL(i,j) = 2*k;
+           functionCallsVaryingL(i,j) = k + 1;
            ak(i,k,j) = a;
            bk(i,k,j) = b;
            ks(i,k,j) = k;
+           k = k + 1;
         end
     end
 end
