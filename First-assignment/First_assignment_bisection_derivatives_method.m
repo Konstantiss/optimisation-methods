@@ -32,7 +32,6 @@ for i=1:1:3
         end
     end
 end
-functionCallsVaryingL
 
 figure(1)
 plot(l,functionCallsVaryingL(1,:))

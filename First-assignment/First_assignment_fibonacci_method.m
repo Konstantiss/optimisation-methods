@@ -50,7 +50,7 @@ for i=1:1:3
         bk(i,k,j) = b;
     end
 end
-functionCallsVaryingL
+
 figure(1)
 plot(l,functionCallsVaryingL(1,:))
 title('Function 1 calls for different Ls')
