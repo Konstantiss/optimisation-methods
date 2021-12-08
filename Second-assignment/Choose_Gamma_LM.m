@@ -37,6 +37,7 @@ for gamma=gStart:gStep:gEnd
         repetitions(i) = k;
      end
     i=i+1;
+    
 end
 pos = find(repetitions==min(repetitions));
 best = 0.1+(pos(1)-1)*0.05;
