@@ -13,6 +13,7 @@ y = yInitial;
 results(k) = fxy(x,y);
 
 jacob = fxyGrad(x,y);
+
 while norm(jacob) >= e
     projectionXInput = x - s*jacob(1);
     projectionYInput = y - s*jacob(2);
